@@ -1,4 +1,4 @@
-package com.ainul.academy.detail
+package com.ainul.academy.ui.detail
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

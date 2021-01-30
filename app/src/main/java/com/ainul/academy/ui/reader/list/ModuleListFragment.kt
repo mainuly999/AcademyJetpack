@@ -1,4 +1,4 @@
-package com.ainul.academy.reader.list
+package com.ainul.academy.ui.reader.list
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
