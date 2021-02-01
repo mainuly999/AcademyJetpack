@@ -6,6 +6,8 @@ import com.ainul.academy.R
 
 class DetailCourseActivity : AppCompatActivity() {
 
+    private lateinit var detailContentBinding: ContentDe
+
     companion object{
         const val EXTRA_COURSE = "extra_course"
     }
