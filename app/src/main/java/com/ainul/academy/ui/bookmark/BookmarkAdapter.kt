@@ -1,4 +1,4 @@
-package com.ainul.academy.ui.academy
+package com.ainul.academy.ui.bookmark
 
 import android.content.Intent
 import android.view.LayoutInflater
@@ -6,13 +6,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.ainul.academy.R
 import com.ainul.academy.data.CourseEntity
-import com.ainul.academy.databinding.ItemsAcademyBinding
+import com.ainul.academy.databinding.ItemsBookmarkBinding
 import com.ainul.academy.ui.detail.DetailCourseActivity
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 
-class AcademyAdapter: RecyclerView.Adapter<AcademyAdapter.CourseViewHolder>() {
-    private var listCourses = ArrayList<CourseEntity>()
+class BookmarkAdapter(private val callback: BookmarkFragmentCallback):RecyclerView.Adapter<BookmarkAdapter.CourseViewHolder>() {
+    private val listCourses = ArrayList<CourseEntity>()
 
     fun setCourses(courses: List<CourseEntity>?){
         if(courses == null) return
@@ -20,8 +20,8 @@ class AcademyAdapter: RecyclerView.Adapter<AcademyAdapter.CourseViewHolder>() {
         this.listCourses.addAll(courses)
     }
 
-    class CourseViewHolder(private val binding: ItemsAcademyBinding): RecyclerView.ViewHolder(binding.root){
-        fun bind(course: CourseEntity) {
+    inner class CourseViewHolder(private val binding: ItemsBookmarkBinding): RecyclerView.ViewHolder(binding.root){
+        fun bind(course: CourseEntity){
             with(binding){
                 tvItemTitle.text = course.title
                 tvItemDate.text = itemView.resources.getString(R.string.deadline_date, course.deadline)
@@ -30,19 +30,20 @@ class AcademyAdapter: RecyclerView.Adapter<AcademyAdapter.CourseViewHolder>() {
                     intent.putExtra(DetailCourseActivity.EXTRA_COURSE, course.courseId)
                     itemView.context.startActivity(intent)
                 }
+
+                imgShare.setOnClickListener { callback.onShareClick(course) }
                 Glide.with(itemView.context)
                         .load(course.imagePath)
                         .apply(RequestOptions.placeholderOf(R.drawable.ic_loading)
-                        .error(R.drawable.ic_error))
+                                .error(R.drawable.ic_error))
                         .into(imgPoster)
             }
         }
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CourseViewHolder {
-        val itemsAcademyBinding = ItemsAcademyBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return CourseViewHolder(itemsAcademyBinding)
+        val itemsBookmarkBinding = ItemsBookmarkBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return CourseViewHolder(itemsBookmarkBinding)
     }
 
     override fun getItemCount(): Int = listCourses.size
