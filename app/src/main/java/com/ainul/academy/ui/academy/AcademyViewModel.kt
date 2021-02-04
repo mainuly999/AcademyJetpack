@@ -6,6 +6,4 @@ import com.ainul.academy.utils.DataDummy
 
 class AcademyViewModel : ViewModel() {
     fun getCourses(): List<CourseEntity> = DataDummy.generateDummyCourses()
-
-
 }
