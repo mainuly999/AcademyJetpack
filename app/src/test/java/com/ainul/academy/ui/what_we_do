@@ -1,0 +1,29 @@
+Codelab Unit Testing ViewModel
+
+-AcademyViewModelTest:
+1.Memuat Courses:
+    a.Memastikan data course tidak null.
+    b.Memastikan jumlah data course sesuai dengan yang diharapkan.
+
+-BookmarkViewModelTest:
+1.Memuat Bookmarks:
+    a.Memastikan data course tidak null.
+    b.Memastikan jumlah data course sesuai dengan yang diharapkan.
+
+-DetailCourseViewModelTest:
+1.Memuat Course:
+    a.Memastikan data course tidak null.
+    b.Memastikan data course sesuai dengan yang diharapkan.
+2.Memuat Modules:
+    a.Memastikan data module tidak null.
+    b.Memastikan jumlah data module sesuai dengan yang diharapkan.
+
+-CourseReaderViewModelTest:
+1.Memuat Modules:
+    a.Memastikan data module tidak null.
+    b.Memastikan jumlah data module sesuai dengan yang diharapkan.
+2.Memuat Module yang dipilih:
+    a.Memastikan data module tidak null.
+    b.Memastikan data content tidak null.
+    c.Memastikan value dari content tidak null.
+    d.Memastikan data content sesuai dengan yang diharapkan.

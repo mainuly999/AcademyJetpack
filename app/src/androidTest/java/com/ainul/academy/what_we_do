@@ -1,0 +1,26 @@
+Codelab Instrumental Testing ViewModel
+
+-Menampilkan data kursus academy :
+1.Memastikan rv_academy dalam keadaan tampil.
+2.Gulir rv_academy ke posisi data terakhir.
+
+-Menampilkan data detail kursus academy:
+1.Memberi tindakan klik pada data pertama di rv_academy.
+2.Memastikan TextView untuk title tampil sesuai dengan yang diharapkan.
+3.Memastikan TextView untuk deadline tampil sesuai dengan yang diharapkan.
+
+-Menampilkan data modul:
+1.Memberi tindakan klik pada data pertama di rv_academy.
+2.Memberi tindakan klik pada btn_start.
+3.Memastikan rv_module dalam keadaan tampil.
+
+-Menampilkan data kursus academy:
+1.Memberi tindakan klik pada data pertama di rv_academy.
+2.Memberi tindakan klik pada btn_start.
+3.Memberi tindakan klik pada data pertama di rv_module
+4.Memastikan web_view sudah tampil.
+
+-Menampilkan data bookmark:
+1.Klik TabLayout dengan teks Bookmark
+2.Memastikan rv_module dalam keadaan tampil.
+3.Gulir rv_module ke posisi data terakhir.
