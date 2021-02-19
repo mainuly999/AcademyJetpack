@@ -11,6 +11,7 @@ import com.ainul.academy.data.ContentEntity
 import com.ainul.academy.data.ModuleEntity
 import com.ainul.academy.databinding.FragmentModuleContentBinding
 import com.ainul.academy.ui.reader.CourseReaderViewModel
+import com.ainul.academy.viewmodel.ViewModelFactory
 
 class ModuleContentFragment : Fragment() {
     companion object{
@@ -32,7 +33,8 @@ class ModuleContentFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?){
         super.onViewCreated(view, savedInstanceState)
         if(activity != null){
-            val viewModel = ViewModelProvider(requireActivity(), ViewModelProvider.NewInstanceFactory())[CourseReaderViewModel::class.java]
+            val factory = ViewModelFactory.getInstance(requireActivity())
+            val viewModel = ViewModelProvider(requireActivity(), factory)[CourseReaderViewModel::class.java]
             val module = viewModel.getSelectedModule()
             populatedWebView(module)
         }

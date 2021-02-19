@@ -12,6 +12,7 @@ import com.ainul.academy.databinding.ActivityDetailCourseBinding
 import com.ainul.academy.databinding.ContentDetailCourseBinding
 import com.ainul.academy.ui.reader.CourseReaderActivity
 import com.ainul.academy.utils.DataDummy
+import com.ainul.academy.viewmodel.ViewModelFactory
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
@@ -36,7 +37,9 @@ class DetailCourseActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         val adapter = DetailCourseAdapter()
-        val viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())[DetailCourseViewModel::class.java]
+
+        val factory = ViewModelFactory.getInstance(this)
+        val viewModel = ViewModelProvider(this, factory)[DetailCourseViewModel::class.java]
 
         val extras = intent.extras
         if(extras != null){

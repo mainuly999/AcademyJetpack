@@ -1,5 +1,7 @@
 Codelab Instrumental Testing ViewModel
 
+cek apakah UI menampilkan data yang sesuai dengan viewModel
+
 -Menampilkan data kursus academy :
 1.Memastikan rv_academy dalam keadaan tampil.
 2.Gulir rv_academy ke posisi data terakhir.

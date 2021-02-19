@@ -12,6 +12,7 @@ import com.ainul.academy.R
 import com.ainul.academy.data.CourseEntity
 import com.ainul.academy.databinding.FragmentBookmarkBinding
 import com.ainul.academy.utils.DataDummy
+import com.ainul.academy.viewmodel.ViewModelFactory
 
 class BookmarkFragment : Fragment(), BookmarkFragmentCallback {
 
@@ -30,7 +31,8 @@ class BookmarkFragment : Fragment(), BookmarkFragmentCallback {
         super.onViewCreated(view, savedInstanceState)
 
         if(activity != null){
-            val viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())[BookmarkViewModel::class.java]
+            val factory = ViewModelFactory.getInstance(requireActivity())
+            val viewModel = ViewModelProvider(this, factory)[BookmarkViewModel::class.java]
             val course = viewModel.getBookmarks()
             val adapter = BookmarkAdapter(this)
             adapter.setCourses(course)
