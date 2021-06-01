@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -40,13 +41,18 @@ class ModuleListFragment : Fragment(), MyAdapterClickListener {
         return fragmentModuleListBinding.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
         val factory = ViewModelFactory.getInstance(requireActivity())
         viewModel = ViewModelProvider(requireActivity(), factory)[CourseReaderViewModel::class.java]
         adapter = ModuleListAdapter(this)
-        populateRecyclerView(viewModel.getModules())
+
+        fragmentModuleListBinding.progressBar.visibility = View.VISIBLE
+        viewModel.getModules().observe(viewLifecycleOwner, Observer<List<ModuleEntity>>{ modules ->
+            fragmentModuleListBinding.progressBar.visibility = View.GONE
+            populateRecyclerView(modules)
+        })
     }
 
 
@@ -63,7 +69,6 @@ class ModuleListFragment : Fragment(), MyAdapterClickListener {
 
     private fun populateRecyclerView(modules: List<ModuleEntity>) {
         with(fragmentModuleListBinding){
-            progressBar.visibility = View.GONE
             adapter.setModules(modules)
             rvModule.layoutManager = LinearLayoutManager(context)
             rvModule.setHasFixedSize(true)

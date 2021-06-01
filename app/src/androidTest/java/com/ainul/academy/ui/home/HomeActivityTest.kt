@@ -3,12 +3,15 @@ package com.ainul.academy.ui.home
 import androidx.recyclerview.widget.RecyclerView
 import androidx.test.core.app.ActivityScenario
 import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.IdlingRegistry
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.matcher.ViewMatchers.*
 import com.ainul.academy.R
 import com.ainul.academy.utils.DataDummy
+import com.ainul.academy.utils.EspressoIdlingResource
+import org.junit.After
 import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Test
@@ -21,7 +24,14 @@ class HomeActivityTest{
     @Before
     fun setUp(){
         ActivityScenario.launch(HomeActivity::class.java)
+        IdlingRegistry.getInstance().register(EspressoIdlingResource.idlingResource)
     }
+
+    @After
+    fun tearDown(){
+        IdlingRegistry.getInstance().unregister(EspressoIdlingResource.idlingResource)
+    }
+
     @Test
     fun loadCourses(){
         //cek apakah rv_acedemy dari package acedemy ditampilkan

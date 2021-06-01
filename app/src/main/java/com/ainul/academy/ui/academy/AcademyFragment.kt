@@ -8,9 +8,11 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ainul.academy.R
+import com.ainul.academy.data.CourseEntity
 import com.ainul.academy.databinding.FragmentAcademyBinding
 import com.ainul.academy.utils.DataDummy
 import com.ainul.academy.viewmodel.ViewModelFactory
+import androidx.lifecycle.Observer
 
 class AcademyFragment : Fragment() {
 
@@ -30,10 +32,15 @@ class AcademyFragment : Fragment() {
         if(activity != null){
             val factory = ViewModelFactory.getInstance(requireActivity())
             val viewModel = ViewModelProvider(this, factory)[AcademyViewModel::class.java]
-            val courses = viewModel.getCourses()
 
             val academyAdapter = AcademyAdapter()
-            academyAdapter.setCourses(courses)
+
+            fragmentAcademyBinding.progressBar.visibility = View.VISIBLE
+            viewModel.getCourses().observe(viewLifecycleOwner, Observer<List<CourseEntity>>{ course ->
+                fragmentAcademyBinding.progressBar.visibility = View.GONE
+                academyAdapter.setCourses(course)
+                academyAdapter.notifyDataSetChanged()
+            })
 
             with(fragmentAcademyBinding.rvAcademy){
                 layoutManager = LinearLayoutManager(context)

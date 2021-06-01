@@ -12,7 +12,7 @@ object DataDummy {
         val courses = ArrayList<CourseEntity>()
 
         courses.add(CourseEntity("a14",
-            "Menjadi Android Developer Expert",
+            "Menjadi Android Developer ExpertAAA",
             "Dicoding sebagai satu-satunya Google Authorized Training Partner di Indonesia telah melalui proses penyusunan kurikulum secara komprehensif. Semua modul telah diverifikasi langsung oleh Google untuk memastikan bahwa materi yang diajarkan relevan dan sesuai dengan kebutuhan industri digital saat ini. Peserta akan belajar membangun aplikasi Android dengan materi Testing, Debugging, Application, Application UX, Fundamental Application Components, Persistent Data Storage, dan Enhanced System Integration.",
             "100 Hari",
             false,

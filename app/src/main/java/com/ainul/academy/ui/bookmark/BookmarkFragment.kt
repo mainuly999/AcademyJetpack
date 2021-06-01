@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.app.ShareCompat
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ainul.academy.R
@@ -33,9 +34,15 @@ class BookmarkFragment : Fragment(), BookmarkFragmentCallback {
         if(activity != null){
             val factory = ViewModelFactory.getInstance(requireActivity())
             val viewModel = ViewModelProvider(this, factory)[BookmarkViewModel::class.java]
-            val course = viewModel.getBookmarks()
+
             val adapter = BookmarkAdapter(this)
-            adapter.setCourses(course)
+
+            fragmentBookmarkBinding.progressBar.visibility = View.VISIBLE
+            viewModel.getBookmarks().observe(viewLifecycleOwner, Observer<List<CourseEntity>>{ course->
+                fragmentBookmarkBinding.progressBar.visibility = View.GONE
+                adapter.setCourses(course)
+                adapter.notifyDataSetChanged()
+            })
 
             with(fragmentBookmarkBinding.rvBookmark){
                 layoutManager = LinearLayoutManager(context)

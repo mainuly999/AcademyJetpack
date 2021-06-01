@@ -118,4 +118,5 @@
         app:layout_constraintStart_toStartOf="@+id/rv_module"
         app:layout_constraintTop_toTopOf="@+id/rv_module"
         tools:visibility="visible" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.ainul.academy.R
 import com.ainul.academy.data.ContentEntity
@@ -35,8 +36,14 @@ class ModuleContentFragment : Fragment() {
         if(activity != null){
             val factory = ViewModelFactory.getInstance(requireActivity())
             val viewModel = ViewModelProvider(requireActivity(), factory)[CourseReaderViewModel::class.java]
-            val module = viewModel.getSelectedModule()
-            populatedWebView(module)
+
+            fragmentModuleContentBinding.progressBar.visibility = View.VISIBLE
+            viewModel.getSelectedModule().observe(viewLifecycleOwner, Observer<ModuleEntity>{ module ->
+                fragmentModuleContentBinding.progressBar.visibility = View.GONE
+                if (module != null) {
+                    populatedWebView(module)
+                }
+            })
         }
     }
 
